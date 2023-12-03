@@ -4,6 +4,7 @@ import React, { useState,  useContext } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { useAuthContext } from '../Context/store';
 
 const LoginForm = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
@@ -13,8 +14,10 @@ const LoginForm = () => {
   };
 
   const [error, setError] = useState('');
-//   const { setAuthToken } = useContext(AuthContext); // If you have an AuthContext to hold the token
+  const { authToken, setAuthToken } = useAuthContext(); // If you have an AuthContext to hold the token
   const router = useRouter();
+
+  console.log(authToken);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +34,7 @@ const LoginForm = () => {
       const { token } = response.data;
 
       // Store the token using context and/or localStorage
-    //   setAuthToken(token);
+      setAuthToken(token);
       localStorage.setItem('authToken', token);
 
       // Redirect to the user's dashboard or home page

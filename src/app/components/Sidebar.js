@@ -16,7 +16,7 @@ const Sidebar = () => {
   const router = useRouter();
 
   return (
-    <aside className="w-64" aria-label="Sidebar">
+    <aside className="flex max-w-md h-screen" aria-label="Sidebar">
       <div className="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-900">
         <ul className="space-y-2">
           {navigation.map((item) => (
